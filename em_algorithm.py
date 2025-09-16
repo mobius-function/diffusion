@@ -3,8 +3,7 @@ import matplotlib.pyplot as plt
 from scipy.stats import norm
 
 class GaussianMixtureEM:
-    def __init__(self, n_components=2, max_iter=100, tol=1e-6):
-        self.n_components = n_components
+    def __init__(self, max_iter=100, tol=1e-6):
         self.max_iter = max_iter
         self.tol = tol
 
@@ -195,7 +194,7 @@ class GaussianMixtureEM:
 # Example usage
 if __name__ == "__main__":
     # Create EM model
-    em_model = GaussianMixtureEM(n_components=2)
+    em_model = GaussianMixtureEM()
 
     # Generate synthetic data
     data, true_labels = em_model.generate_data(n_samples=1000, means=[2, 8], stds=[1, 1.5], weights=[0.3, 0.7])

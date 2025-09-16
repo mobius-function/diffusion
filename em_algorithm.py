@@ -17,6 +17,17 @@ class GaussianMixtureEM:
         if weights is None:
             weights = [0.6, 0.4]
 
+        # Update n_components based on provided parameters
+        self.n_components = len(means)
+
+        # Validate parameter consistency
+        if len(stds) != self.n_components or len(weights) != self.n_components:
+            raise ValueError(f"All parameters must have same length. Got means: {len(means)}, stds: {len(stds)}, weights: {len(weights)}")
+
+        # Validate weights sum to 1
+        if not np.isclose(sum(weights), 1.0):
+            raise ValueError(f"Weights must sum to 1.0, got {sum(weights)}")
+
         self.true_means = means
         self.true_stds = stds
         self.true_weights = weights
